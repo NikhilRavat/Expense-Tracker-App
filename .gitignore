@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/ExpenseTracker.Api/.vs
+/ExpenseTracker.Api/ExpenseTracker.Api/bin/Debug/net8.0
+/ExpenseTracker.Api/ExpenseTracker.Api/obj
