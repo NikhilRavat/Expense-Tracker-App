@@ -6,3 +6,5 @@
 /ExpenseTracker.Api/.vs
 /ExpenseTracker.Api/ExpenseTracker.Api/bin/Debug/net8.0
 /ExpenseTracker.Api/ExpenseTracker.Api/obj
+/ExpenseApp/.vs/ExpenseApp
+/ExpenseApp/ExpenseApp/obj
