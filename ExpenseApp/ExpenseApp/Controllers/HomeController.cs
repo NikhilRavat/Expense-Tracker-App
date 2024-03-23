@@ -1,9 +1,11 @@
+using ExpenseApp.Helpers;
 using ExpenseApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace ExpenseApp.Controllers
 {
+    [CustomAuthorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
