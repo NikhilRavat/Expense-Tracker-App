@@ -28,7 +28,7 @@ namespace ExpenseTracker.Api.Controllers
         }
 
         [HttpPost("signIn/{userName}/{password}")]
-        public async Task<ActionResult<SignInResult>> SignIn(string userName,string password)
+        public async Task<ActionResult<UserDetailsModel>> SignIn(string userName,string password)
         {
             var result = await _accountRepository.SignIn(userName,password);
             return Ok(result);
