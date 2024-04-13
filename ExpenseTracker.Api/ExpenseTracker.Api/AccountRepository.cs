@@ -68,6 +68,7 @@ namespace ExpenseTracker.Api
                     signingCredentials: new SigningCredentials(authSignKey, SecurityAlgorithms.HmacSha256Signature));
                 return new UserDetailsModel
                 {
+                    UserId = user.Id,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email ?? string.Empty,
