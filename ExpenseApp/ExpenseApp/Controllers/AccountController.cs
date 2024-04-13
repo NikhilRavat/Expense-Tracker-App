@@ -10,10 +10,12 @@ namespace ExpenseApp.Controllers
     public class AccountController : Controller
     {
         private readonly HttpClient _client;
+        private readonly IConfiguration _config;
 
-        public AccountController(HttpClient client)
+        public AccountController(HttpClient client,IConfiguration config)
         {
             _client = client;
+            _config = config;
         }
         public IActionResult Login()
         {
@@ -25,7 +27,7 @@ namespace ExpenseApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var response = await _client.PostAsJsonAsync($"https://localhost:44379/api/Account/signIn/{model.UserName}/{model.Password}", new { });
+                var response = await _client.PostAsJsonAsync($"{_config.GetValue<string>("ApiUrl")}Account/signIn/{model.UserName}/{model.Password}", new { });
                 var user = JsonSerializer.Deserialize<UserDetails>(await response.Content.ReadAsStringAsync(),new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
@@ -34,6 +36,7 @@ namespace ExpenseApp.Controllers
                 {
                     var claims = new List<Claim>
                     {
+                        new Claim("UserId",user.UserId),
                         new Claim(ClaimTypes.Name, user.FirstName + " " + user.LastName),
                         new Claim(ClaimTypes.Email, user.Email),
                         new Claim("AuthToken", user.Token) // Custom claim for the authentication token

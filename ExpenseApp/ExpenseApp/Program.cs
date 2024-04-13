@@ -1,9 +1,15 @@
+using ExpenseApp.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<IHttpService,HttpService>()
+    .AddScoped<IExpenseService,ExpenseService>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
